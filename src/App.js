@@ -24,7 +24,7 @@ const App = () => {
   const [openModal, setOpenModal] = useState(false);
 
   const fetchedData = () => {
-    return fetch("https://5f19ab62e104860016baf273.mockapi.io/api/user", {
+    return fetch("https://5f1bd3f1254cec00160823fe.mockapi.io/api/user", {
       method: "GET",
     })
       .then((response) => {
@@ -47,7 +47,11 @@ const App = () => {
       <div className="container col-md-8 offset-md-2">
         {userList &&
           userList.map((user) => (
-            <Grid container spacing={3} style = {{marginLeft: "25%", marginTop: "5px"}}>
+            <Grid
+              container
+              spacing={3}
+              style={{ marginLeft: "25%", marginTop: "5px" }}
+            >
               <Grid item xs={12}>
                 <button
                   type="button"

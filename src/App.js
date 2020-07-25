@@ -1,13 +1,30 @@
 import React, { useState, useEffect } from "react";
 import Modal from "./components/modal";
+import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: "black",
+    fontSize: "20px",
+  },
+}));
 
 const App = () => {
+  const classes = useStyles();
+
   const [userList, setUserList] = useState();
   const [userData, setUserData] = useState();
   const [openModal, setOpenModal] = useState(false);
 
   const fetchedData = () => {
-    return fetch("https://5f1bd3f1254cec00160823fe.mockapi.io/api/user", {
+    return fetch("https://5f19ab62e104860016baf273.mockapi.io/api/user", {
       method: "GET",
     })
       .then((response) => {
@@ -30,21 +47,19 @@ const App = () => {
       <div className="container col-md-8 offset-md-2">
         {userList &&
           userList.map((user) => (
-            <div class="card">
-              <div class="card-body">
-                <blockquote class="blockquote mb-0">
-                  <button
-                    type="button"
-                    class="btn btn-info btn-lg btn-block"
-                    onClick={() => handleOpenModal(user)}
-                    data-toggle="modal"
-                    data-target="#myModal"
-                  >
+            <Grid container spacing={3} style = {{marginLeft: "25%", marginTop: "5px"}}>
+              <Grid item xs={12}>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-block"
+                  onClick={() => handleOpenModal(user)}
+                >
+                  <Paper elevation={3} className={classes.paper}>
                     {user.real_name}
-                  </button>
-                </blockquote>
-              </div>
-            </div>
+                  </Paper>
+                </button>
+              </Grid>
+            </Grid>
           ))}
       </div>
       {openModal && (
